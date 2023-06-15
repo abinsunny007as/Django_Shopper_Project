@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% extends 'indexpage.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display</title>
+</head>
+<body>
+    <div class="card">
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Category Name</th>
+                        <th>Category Image</th>
+                        <th>Description</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    {% for i in data %}
+                    <tbody>
+                    <tr class="table-active">
+                        <th scope="row">{{i.Categoryname}}</th>
+                        <td>
+                            <img src="{{i.CatImage.url}}" height="100px" width="100px">
+                        </td>
+                        <td>{{i.Description}}</td>
+                        <td>
+                            <form action="{% url 'edit_category' dataid=i.id %}">
+                                <button type="submit" class="btn btn-info" style="border-radius:10px;">EDIT</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{% url 'delete_category' dataid=i.id %}">
+                                <button type="submit" class="btn btn-danger" style="border-radius:10px;">DELETE</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+<!--        <div class="card-header">-->
+<!--            <h5>Contextual Classes</h5>-->
+<!--            <span>For Make row Contextual add Contextual class like <code>.table-success</code> in <code> tr tag</code> and For cell add Contextual class in <code> td or th tag</code> . </span>-->
+<!--            <div class="card-header-right">-->
+<!--                <ul class="list-unstyled card-option">-->
+<!--                    <li><i class="fa fa fa-wrench open-card-option"></i></li>-->
+<!--                    <li><i class="fa fa-window-maximize full-card"></i></li>-->
+<!--                    <li><i class="fa fa-minus minimize-card"></i></li>-->
+<!--                    <li><i class="fa fa-refresh reload-card"></i></li>-->
+<!--                    <li><i class="fa fa-trash close-card"></i></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</body>
+</html>
+{% endblock %}
